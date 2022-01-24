@@ -25,16 +25,20 @@ public class PosterManager {
     }
 
     public Film[] getFilmsInReverseOrder() {
-        int filmsLine = films.length;
-        if (filmsLine < defaultLimitOfFilms) {
-            defaultLimitOfFilms = filmsLine;
+        Film[] result = new Film[films.length];
+        for (int i = 0; i < result.length; i++) {
+            int index = films.length - i - 1;
+            result[i] = films[index];
         }
-        Film[] addedFilm = new Film[defaultLimitOfFilms];
-        for (int i = 0; i < addedFilm.length; i++) {
-            int result = filmsLine - i - 1;
-            addedFilm[i] = films[result];
+        if (result.length < defaultLimitOfFilms) {
+            return result;
+        } else {
+            Film[] result2 = new Film[defaultLimitOfFilms];
+            for (int i = 0; i < result2.length; i++) {
+                result2[i] = result[i];
 
+            }
+            return result2;
         }
-        return addedFilm;
     }
 }
